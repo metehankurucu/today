@@ -1,0 +1,19 @@
+{
+  "name": "electron-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "todo"
+  ],
+  "author": "Metehan Kurucu",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^7.1.10"
+  }
+}
