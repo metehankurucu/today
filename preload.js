@@ -1,12 +1,17 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
+const electron = require('electron');
+const moment = require('moment');
+
 window.addEventListener('DOMContentLoaded', () => {
-  const electron = require('electron');
 
   const replaceText = (selector, text) => {
     const element = document.getElementById(selector)
     if (element) element.innerText = text
   }
+
+  replaceText("today",moment().format("DD/MM/YYYY"));
+
 
   const addBtn = document.getElementById('addBtn');
   addBtn.addEventListener('click',() => {
@@ -18,9 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  for (const type of ['chrome', 'node', 'electron']) {
-    replaceText(`${type}-version`, process.versions[type])
-  }
+
 
   function alert(text,type){
     const alert = document.getElementById('alert');
