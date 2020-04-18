@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <title>TODOS</title>
@@ -25,65 +24,15 @@
                         <input id='todo' type="text" class="form-control todo-list-input" placeholder="What do you need to do?">
                         <button id='addBtn' class="add btn btn-light font-weight-bold todo-list-add-btn">Add</button>
                     </div>
-                    <h4>Todos</h4>
-                    <div id="todos">
-
-                    </div>
-                    <h4>Done</h4>
-                    <div id="done">
-
-                    </div>
-                    
                     <div class="list-wrapper">
-                        <ul class="d-flex flex-column-reverse ">
-                            <li class="completed">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox" checked=""> Call Rampbo <i class="input-helper"></i></label>
-                                </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                            </li>
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Print bills <i class="input-helper"></i></label>
-                                </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                            </li>
-                            <li class="completed">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox" checked=""> Call Rampbo <i class="input-helper"></i></label>
-                                </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                            </li>
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Print bills <i class="input-helper"></i></label>
-                                </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                            </li><li class="completed">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox" checked=""> Call Rampbo <i class="input-helper"></i></label>
-                                </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                            </li>
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Print bills <i class="input-helper"></i></label>
-                                </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                            </li><li class="completed">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox" checked=""> Call Rampbo <i class="input-helper"></i></label>
-                                </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                            </li>
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Print bills <i class="input-helper"></i></label>
-                                </div> <i class="remove mdi mdi-close-circle-outline"></i>
-                            </li>
-                        </ul>
-                    </div>
+                        <h4>Todos</h4>
+                            <ul id="todos" class="d-flex flex-column-reverse ">
+                            </ul>
+                            <h4>Done</h4>
+                            <ul id="done" class="d-flex flex-column-reverse ">
+                                
+                            </ul>
+                        </div>
                 </div>
             </div>
         </div>

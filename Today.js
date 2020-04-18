@@ -33,7 +33,7 @@ class Today {
         return { done:this.done, todos:this.todos };
     }
 
-    addTodo = (todo) => {
+    addTodo(todo){
         this.todos.push(todo);
         this.saveToday();
         return this.todos;
@@ -77,7 +77,6 @@ class Today {
                 reject();
             });
         })
-        
     } 
 
     getFromStorage = async (date) => {

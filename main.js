@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain} = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path');
 const Today = require('./Today');
 
@@ -10,7 +10,7 @@ let mainWindow;
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 1200,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
@@ -23,13 +23,10 @@ function createWindow () {
   mainWindow.loadFile('pages/index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     mainWindow = null
   })
 }
@@ -42,11 +39,21 @@ app.on('ready', () => {
 
   const today = new Today();
 
-  console.log(today.get());
-  ipcMain.on('onAddTodo', (err,data) => {
-    console.log('BUrada', data);
+  ipcMain.on('addTodo', (err,todo) => {
+    today.addTodo(todo);
   });
 
+  ipcMain.on('deleteTodo', (err,todo) => {
+    today.deleteTodo(todo);
+  });
+
+  ipcMain.on('addDone', (err,todo) => {
+    today.addDone(todo);
+  });
+
+  mainWindow.webContents.once("dom-ready", () => {
+      mainWindow.webContents.send("initialize", today);
+  });
 
 })
 
