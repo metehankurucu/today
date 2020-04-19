@@ -7,9 +7,9 @@ class Today {
     todos = [];
 
     constructor(){
-        const today = moment().format("DD/MM/YYYY");
+        const today = moment().format("DD-MM-YYYY");
         this.date = today;
-
+        
         const exist = this.storageHas(today)
         .then(() => {
             this.getFromStorage(today)
@@ -85,6 +85,7 @@ class Today {
                 if (error){
                     reject(error);
                 } 
+                console.log(data);
                 resolve(data);
             });
         });

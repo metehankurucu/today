@@ -1,7 +1,9 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, globalShortcut, session  } = require('electron')
 const path = require('path');
 const Today = require('./Today');
+const Theme = require('./Theme');
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,11 +15,12 @@ function createWindow () {
     width: 1200,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
+      preload: path.join(__dirname, 'preload.js'),
+    },
+    
   })
 
-  // mainWindow.resizable = false;
+  mainWindow.resizable = false;
 
   // and load the index.html of the app.
   mainWindow.loadFile('pages/index.html')
@@ -28,7 +31,8 @@ function createWindow () {
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     mainWindow = null
-  })
+  });
+
 }
 
 // This method will be called when Electron has finished
@@ -51,11 +55,51 @@ app.on('ready', () => {
     today.addDone(todo);
   });
 
-  mainWindow.webContents.once("dom-ready", () => {
-      mainWindow.webContents.send("initialize", today);
+  ipcMain.on('setTheme', (err,theme) => {
+    Theme.setTheme(theme)
   });
 
-})
+  mainWindow.webContents.once("dom-ready", async () => {
+    try {
+      const theme = await Theme.getTheme();
+      if(typeof theme == 'object'){
+        //Theme does not saved
+        Theme.setTheme('light');
+        mainWindow.webContents.send("initTheme", 'light');
+        console.log('Burda değil');
+      }else{
+       console.log('Burda');
+        mainWindow.webContents.send("initTheme", theme);
+      }
+    } catch (error) {
+      console.log(error);
+      mainWindow.webContents.send("initTheme", 'light');
+    }
+
+    mainWindow.webContents.send("initialize", today);
+  });
+
+
+  // mainWindow.on('focus', (event) => {
+  //     globalShortcut.registerAll(['CommandOrControl+R','Shift+Command+R','F5'], () => {})
+  // })
+
+  // mainWindow.on('blur', (event) => {
+  //     globalShortcut.unregisterAll()
+  // })
+
+});
+
+function initTheme(){
+  storage.get(date, function(error, data) {
+    if (error){
+        reject(error);
+    } 
+    console.log(data);
+    resolve(data);
+});
+}
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

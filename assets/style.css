@@ -1,13 +1,70 @@
+body{
 
+}
 body.dark{
-    color:#fff;
+    color:#FDFEFE;
     background-color: #222;
 }
 
 body.light{
-    color:#000;
-    background-color: #FDFEFE;
+    color:#222;
+    background-color: #f1f1f1;
+    
 }
+
+/*Simple css to style it like a toggle switch*/
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+  
+.theme-switch input {
+display:none;
+}
+  
+  .slider {
+    background-color: #222;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    background-color: #ECF0F1;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+  }
+  
+  input:checked + .slider {
+    background-color: #fff;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
 
 .flex {
     -webkit-box-flex: 1;
@@ -181,7 +238,7 @@ body.light{
 .list-wrapper ul li {
     font-size: .9375rem;
     padding: .4rem 0;
-    border-bottom: 1px solid #f3f3f3
+    /* border-bottom: 1px solid #f3f3f3 */
 }
 
 .list-wrapper ul li:first-child {
@@ -233,7 +290,6 @@ body.light{
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 100%;
-    white-space: nowrap
 }
 
 .form-check {
@@ -251,18 +307,20 @@ body.light{
 .email-wrapper .mail-list-container .mail-list .content .sender-name,
 .email-wrapper .message-body .attachments-sections ul li .details p.file-name,
 .settings-panel .chat-list .list .info p {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 100%;
-    white-space: nowrap
 }
 
 .form-check .form-check-label {
     min-height: 18px;
     display: block;
     margin-left: 1.75rem;
-    font-size: 0.875rem;
-    line-height: 1.5
+    font-size: 1rem;
+    margin-top: -4px;
+    font-weight: 500;
+    line-height: 1.5;
+    align-self: flex-start;
+    width:100%;
+    max-width: 100px;
+    overflow-x: unset;
 }
 
 .form-check-label {
@@ -300,8 +358,6 @@ input[type="checkbox"] {
 .settings-panel .chat-list .list .info p {
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: 100%;
-    white-space: nowrap
 }
 
 .form-check .form-check-label input[type="checkbox"]+.input-helper:before {
@@ -415,8 +471,9 @@ input[type="checkbox"] {
 
 .list-wrapper ul li {
     font-size: .9375rem;
+    
     padding: .4rem 0;
-    border-bottom: 1px solid #f3f3f3
+    /* border-bottom: 1px solid #f3f3f3 */
 }
 
 .mdi:before {

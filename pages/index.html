@@ -10,36 +10,40 @@
     <link rel="stylesheet" href="../assets/style.css">
 </head>
 
-<body class="dark">
+<body id='body' class="light">
     <div class="page-content " id="page-content">
         <div class="ml-5 mr-5 mt-3 ">
             <div class="row d-flex ">
                 <div class="card-body">
                     <div class="row justify-content-between align-items-center">
                         <h1 class="">Today</h4>
-                        <small id="today" class=""></small>
+                        <div>
+                            <div class="theme-switch-wrapper">
+                                <label class="theme-switch" for="checkbox">
+                                    <input type="checkbox" id="checkbox" />
+                                    <div class="slider round"></div>
+                              </label>
+                            </div>
+                        </div>
                     </div>
                     <div id='alert'></div>
                     <div class="add-items d-flex">
-                        <input id='todo' type="text" class="form-control todo-list-input" placeholder="What do you need to do?">
-                        <button id='addBtn' class="add btn btn-light font-weight-bold todo-list-add-btn">Add</button>
+                        <input id='todo' type="text" class="form-control todo-list-input text-dark" placeholder="What do you need to do?">
+                        <button id='addBtn' class="add btn btn-dark font-weight-bold todo-list-add-btn">Add</button>
                     </div>
                     <div class="list-wrapper">
                         <h4>Todos</h4>
-                            <ul id="todos" class="d-flex flex-column-reverse ">
-                            </ul>
-                            <h4>Done</h4>
-                            <ul id="done" class="d-flex flex-column-reverse ">
-                                
-                            </ul>
-                        </div>
+                        <ul id="todos" class="d-flex flex-column-reverse "></ul>
+                        <h4>Done</h4>
+                        <ul id="done" class="d-flex flex-column-reverse "></ul>
+                    </div>
                 </div>
             </div>
         </div>
+        
     </div>
     <!-- You can also require other files to run in this process -->
     <script src="../assets/jquery.min.js"></script>
     <script src="../assets/bootstrap.min.js"></script>
-    <script src="../renderer.js"></script>
 </body>
 </html>
