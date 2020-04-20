@@ -1,14 +1,14 @@
 {
   "name": "electron-todo",
-  "productName":"Today",
+  "productName": "Today",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build:mac" : "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/app.icns --prune=true --out=release-builds",
-    "build:windows" : "electron-packager . today --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/app.ico --prune=true --out=release-builds --version-string.CompanyName=M --version-string.FileDescription=CE --version-string.ProductName=\"Today\"",
-    "build:linux" : "electron-packager . today --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/linux/app.png --prune=true --out=release-builds"
+    "build:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/app.icns --prune=true --out=release-builds",
+    "build:windows": "electron-packager . today --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/app.ico --prune=true --out=release-builds --version-string.CompanyName=M --version-string.FileDescription=CE --version-string.ProductName=\"Today\"",
+    "build:linux": "electron-packager . today --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/linux/app.png --prune=true --out=release-builds"
   },
   "repository": "",
   "keywords": [
@@ -18,7 +18,7 @@
   "author": "Metehan Kurucu",
   "license": "MIT",
   "dependencies": {
-    "electron": "^7.1.10",
+    "electron": "^7.2.3",
     "electron-json-storage": "^4.1.8",
     "moment": "^2.24.0"
   },
