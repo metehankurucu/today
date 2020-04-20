@@ -1,6 +1,4 @@
-body{
 
-}
 body.dark{
     color:#FDFEFE;
     background-color: #222;
@@ -300,14 +298,6 @@ display:none;
     padding-left: 0
 }
 
-.list-wrapper ul li .form-check,
-.list-wrapper ul li .form-check .form-check-label,
-.email-wrapper .mail-sidebar .menu-bar .profile-list-item a .user .u-name,
-.email-wrapper .mail-sidebar .menu-bar .profile-list-item a .user .u-designation,
-.email-wrapper .mail-list-container .mail-list .content .sender-name,
-.email-wrapper .message-body .attachments-sections ul li .details p.file-name,
-.settings-panel .chat-list .list .info p {
-}
 
 .form-check .form-check-label {
     min-height: 18px;
