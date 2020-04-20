@@ -6,6 +6,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
   //Main
   const mode = document.getElementById('checkbox');
+  const input = document.getElementById('todo');
+
+  input.addEventListener("keypress", e => {
+    if (e.keyCode == 13) {
+      const todo = e.target.value;
+      if(todo !== ''){
+        ipcRenderer.send('addTodo',todo);
+        appendTodo('todos',todo,false);
+        input.value = '';
+      }else{
+        alert('Plase enter a todo','light')
+      }
+    }
+  });
 
   mode.addEventListener('change',({ target:{checked} }) => {
     const theme = checked ? 'dark' : 'light';
@@ -29,10 +43,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const addBtn = document.getElementById('addBtn');
   addBtn.addEventListener('click',() => {
-    const todo = document.getElementById('todo').value
+    const todo = input.value
     if(todo !== ''){
       ipcRenderer.send('addTodo',todo);
       appendTodo('todos',todo,false);
+      input.value = ''; 
     }else{
       alert('Plase enter a todo','light')
     }
@@ -133,6 +148,4 @@ window.addEventListener('DOMContentLoaded', () => {
         '</button>' +
       '</div>'
   }
-
-  
 });

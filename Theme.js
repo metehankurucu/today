@@ -19,7 +19,6 @@ class Theme {
                 if (error){
                     reject(error);
                 } 
-                console.log('getTheme',data);
                 resolve(data);
             });
         });

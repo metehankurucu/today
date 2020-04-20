@@ -1,6 +1,10 @@
 const storage = require('electron-json-storage');
 var moment = require('moment');
 
+// Today does not delete your old todos, for show previous days
+// If developed, you can also see the previous days
+// You may develop this
+
 class Today {
     date;
     done = [];
@@ -85,7 +89,6 @@ class Today {
                 if (error){
                     reject(error);
                 } 
-                console.log(data);
                 resolve(data);
             });
         });

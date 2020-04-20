@@ -1,9 +1,8 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain, globalShortcut, session  } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron')
 const path = require('path');
 const Today = require('./Today');
 const Theme = require('./Theme');
-
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -12,28 +11,35 @@ let mainWindow;
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1200,
+    width: 1000,
     height: 600,
+    minWidth:300,
+    minHeight:400,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
     
   })
 
-  mainWindow.resizable = false;
+  // mainWindow.resizable = false;
 
   // and load the index.html of the app.
   mainWindow.loadFile('pages/index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
+  mainWindow.on("close", e => {
+      mainWindow = null;
+      app.quit();
+  });
+  
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     mainWindow = null
   });
-
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -66,19 +72,15 @@ app.on('ready', () => {
         //Theme does not saved
         Theme.setTheme('light');
         mainWindow.webContents.send("initTheme", 'light');
-        console.log('Burda değil');
       }else{
-       console.log('Burda');
         mainWindow.webContents.send("initTheme", theme);
       }
     } catch (error) {
-      console.log(error);
       mainWindow.webContents.send("initTheme", 'light');
     }
 
     mainWindow.webContents.send("initialize", today);
   });
-
 
   // mainWindow.on('focus', (event) => {
   //     globalShortcut.registerAll(['CommandOrControl+R','Shift+Command+R','F5'], () => {})
@@ -90,15 +92,34 @@ app.on('ready', () => {
 
 });
 
-function initTheme(){
-  storage.get(date, function(error, data) {
-    if (error){
-        reject(error);
-    } 
-    console.log(data);
-    resolve(data);
-});
-}
+const menuTemplate = [
+  {
+    label: "Today",
+    submenu: [
+      {
+        label: "About",
+        click: () => {
+          dialog.showMessageBox(mainWindow, {
+            type: "info",
+            title: "About",
+            message: "Today",
+            detail:"Today is basic todo app built by @metehankurucu.",
+            icon: path.join(__dirname, "assets/png/64x64.png")
+          });
+        }
+      },
+      {
+        label: "Quit",
+        accelerator: process.platform == "darwin" ? "Command+Q" : "Ctrl+Q",
+        role: "quit"
+      }
+    ]
+  }
+];
+
+const menu = Menu.buildFromTemplate(menuTemplate);
+Menu.setApplicationMenu(menu);
+
 
 
 // Quit when all windows are closed.
@@ -112,7 +133,9 @@ app.on('activate', function () {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow()
-})
+});
+
+
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
